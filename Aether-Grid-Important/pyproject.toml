@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aethergrid"
+version = "1.0.0"
+description = "A high-performance task management system with RAM-first queuing."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "httpx",
+    "pydantic",
+    "pydantic-settings",
+    "rich"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-asyncio",
+    "httpx"
+]
+
+[project.scripts]
+ag-leader = "aethergrid.leader:main"
+ag-worker = "aethergrid.worker:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aethergrid*"]
